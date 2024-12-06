@@ -2,23 +2,23 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <title>スコア追加</title>
+    <title>得点追加</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='base-style.css') }}"
     />
   </head>
   <body>
-    <h1>新しいスコアを追加</h1>
+    <h1>新しい得点を追加</h1>
     <ul class="breadcrumb">
       <li><a href="{{ url_for('index') }}">HOME</a></li>
-      <li><a href="{{ url_for('score.list') }}">スコア一覧</a></li>
-      <li>新規スコア</li>
+      <li><a href="{{ url_for('score.list') }}">得点一覧</a></li>
+      <li>新規得点</li>
     </ul>
 
     <form action="{{ url_for('score.add') }}" method="post">
       <label
-        >チャレンジャー:
+        >名前:
         <select name="challenger_id" required>
           {% for challenger in challengers %}
           <option value="{{ challenger.id }}">{{ challenger.name }}</option>
@@ -26,14 +26,21 @@
         </select> </label
       ><br />
       <label
-        >曲:
+        >曲名:
         <select name="song_id" required>
           {% for song in songs %}
           <option value="{{ song.id }}">{{ song.song }}</option>
           {% endfor %}
         </select> </label
       ><br />
-      <label>スコア: <input type="number" name="score_id" required /></label
+      <label
+        >得点:
+        <input
+          type="number"
+          name="score_id"
+          max="100"
+          min="0"
+          required /></label
       ><br />
       <button type="submit">追加</button>
     </form>

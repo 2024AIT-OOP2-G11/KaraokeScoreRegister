@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>データ一覧</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}"/>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='base-style.css') }}"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
@@ -16,10 +19,8 @@
       <li><a href="{{ url_for('score.list') }}">スコアリスト</a></li>
     </ul>
 
-    <script>
-      // ここに JavaScript のコードを記述！
-
-
-  </script>
+    {%include "./components/score_ranking.html"%}
+    {%include"./components/age_group_chart.html"%}
+    {%include"./components/song_counts_chart.html"%}
   </body>
 </html>

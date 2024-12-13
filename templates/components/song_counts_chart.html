@@ -1,0 +1,52 @@
+<section class="song_counts">
+  <h3>最も歌われた曲（TOP5）</h3>
+  <canvas id="song_counts_chart" width="400" height="200"></canvas>
+</section>
+
+<script>
+  // ここに JavaScript のコードを記述！
+  const ctx = document.getElementById("song_counts_chart");
+  // /api/song_counts からデータ取得
+  fetch("/api/song_counts")
+    .then((res) => res.json())
+    .then((data) => {
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: data.labels, // 縦軸(曲名)
+          datasets: [
+            {
+              label: "歌われた回数",
+              data: data.data, // 横軸(回数)
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+                "rgba(255, 205, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+              ],
+              borderColor: [
+                "rgb(255, 99, 132)",
+                "rgb(255, 159, 64)",
+                "rgb(255, 205, 86)",
+                "rgb(75, 192, 192)",
+                "rgb(54, 162, 235)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1, // 目盛りの間隔を1にする
+              },
+            },
+          },
+        },
+      });
+    });
+</script>

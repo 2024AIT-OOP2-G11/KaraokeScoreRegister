@@ -3,6 +3,7 @@ from models import initialize_database
 from routes import blueprints
 from peewee import fn
 from models import Score
+from models import initialize_database, Challenger
 
 app = Flask(__name__)
 
@@ -16,6 +17,32 @@ for blueprint in blueprints:
 # ホームページのルート
 @app.route('/')
 def index():
+    # 年代別の人数を取得
+    age_list = (
+        Challenger
+        .select(Challenger.age, fn.COUNT(Challenger.id).alias('count'))
+        .group_by(Challenger.age)
+    )
+
+    # 年代ラベル
+    age_labels = ['10代以下', '20代', '30代', '40代', '50代以上']
+    
+    # 初期化された年代別カウント
+    age_counts = [0, 0, 0, 0, 0]
+
+    # 年代ごとに人数をカウント
+    for al in age_list:
+        if al.age <= 19:
+            age_counts[0] += al.count
+        elif al.age <= 29:
+            age_counts[1] += al.count
+        elif al.age <= 39:
+            age_counts[2] += al.count
+        elif al.age <= 49:
+            age_counts[3] += al.count
+        else:
+            age_counts[4] += al.count
+    
   
     # トップ5の得点を取得
     top_scores = (
@@ -52,8 +79,9 @@ def index():
                            song_names=song_names, 
                            song_counts=song_counts,
                            top_score_songs=top_score_songs,
+                           age_labels=age_labels, 
+                           age_counts=age_counts
                           )
-  
 
 if __name__ == '__main__':
     app.run(port=8080, debug=True)

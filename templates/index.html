@@ -37,39 +37,40 @@
             </ul> -->
           </menu>
       </section>
-
+      <section class="score_ranking">
+        <h3>点数ランキング（TOP5）</h3>
+          <table id="rankingTable">
+            <thead>
+              <tr>
+                <th>順位</th>
+                <th>点数</th>
+                <th>曲名</th>
+                <th>チャレンジャー名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- JavaScriptでデータを埋め込む -->
+            </tbody>
+          </table>
+        </canvas>
+      </section>
+    
+    
+    <section class="song_era">
+          <h3>年代割合</h3>
+          <canvas id = "song_era_chart"></canvas>
+        </section>
+  
+      
+      <section class="song_counts">
+        <h3>最も歌われた曲（TOP5）</h3>
+        <canvas id="song_counts_chart"></canvas>
+        <!-- <canvas id="song_counts_chart" width="400" height="200"></canvas> -->
+      </section>
     </main>
     
 	  
-	<section class="score_ranking">
-      <h3>点数ランキング（TOP5）</h3>
-        <table id="rankingTable">
-          <thead>
-            <tr>
-              <th>順位</th>
-              <th>点数</th>
-              <th>曲名</th>
-              <th>チャレンジャー名</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- JavaScriptでデータを埋め込む -->
-          </tbody>
-        </table>
-      </canvas>
-    </section>
-  
-  
-  <section class="song_era">
-        <h3>年代割合</h3>
-        <canvas id = "song_era_chart"></canvas>
-      </section>
-
-	  
-    <section class="song_counts">
-      <h3>最も歌われた曲（TOP5）</h3>
-      <canvas id="song_counts_chart" width="400" height="200"></canvas>
-    </section>
+	
 	  
     <script>
       // ここに JavaScript のコードを記述！
